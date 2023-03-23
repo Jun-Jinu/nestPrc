@@ -42,22 +42,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.TodoService = void 0;
+exports.TodoController = void 0;
 var common_1 = require("@nestjs/common");
-var TodoService = /** @class */ (function () {
-    function TodoService(PrismaService) {
-        this.PrismaService = PrismaService;
+var TodoController = /** @class */ (function () {
+    function TodoController(TodoService) {
+        this.TodoService = TodoService;
     }
-    TodoService.prototype.fetchAllTodos = function () {
+    TodoController.prototype.fetchAllTodos = function () {
         return __awaiter(this, void 0, Promise, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.PrismaService.user.findMany()];
+                return [2 /*return*/, this.TodoService.fetchAllTodos()];
             });
         });
     };
-    TodoService = __decorate([
-        common_1.Injectable()
-    ], TodoService);
-    return TodoService;
+    __decorate([
+        common_1.Get()
+    ], TodoController.prototype, "fetchAllTodos");
+    TodoController = __decorate([
+        common_1.Controller('todo')
+    ], TodoController);
+    return TodoController;
 }());
-exports.TodoService = TodoService;
+exports.TodoController = TodoController;
