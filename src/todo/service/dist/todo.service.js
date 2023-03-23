@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,23 +42,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var core_1 = require("@nestjs/core");
-// import { AppModule } from './app.module';
-var todo_module_1 = require("./todo/todo.module");
-function bootstrap() {
-    return __awaiter(this, void 0, void 0, function () {
-        var app;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, core_1.NestFactory.create(todo_module_1.TodoModule)];
-                case 1:
-                    app = _a.sent();
-                    return [4 /*yield*/, app.listen(4000)];
-                case 2:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
+exports.TodoService = void 0;
+var common_1 = require("@nestjs/common");
+var TodoService = /** @class */ (function () {
+    function TodoService(PrismaService) {
+        this.PrismaService = PrismaService;
+    }
+    TodoService.prototype.fetchAllTodos = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.PrismaService.todo.findMany()];
+            });
         });
-    });
-}
-bootstrap();
+    };
+    TodoService = __decorate([
+        common_1.Injectable()
+    ], TodoService);
+    return TodoService;
+}());
+exports.TodoService = TodoService;

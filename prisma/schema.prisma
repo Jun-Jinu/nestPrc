@@ -12,8 +12,8 @@ datasource db {
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   title   String
   content String?
-  is_done Boolean? @default(false)
+  is_done Boolean @default(false)
 }
